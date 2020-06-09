@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    title= tabtitle
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js")
+    script(src="/javascripts/main.js")
+  body
+    greyOut(id="greyOut")
+    confirmation(id="confirmation")
+      label(id="confirmationMessage") PLACEHOLDER
+      label(id="confirmationURL")
+      collection
+        input(type="button" id="confirmationYes" value="Yes")
+        input(type="button" id="confirmationNo" value="Cancel")
+    errorMessage(id="errorMessage")
+      label(id="errorMessageMessage") PLACEHOLDER
+      collection
+        input(type="button" id="errorOK", value="OK")
+    content(id="logIn")
+      backgroundShape
+      img(src="/images/logoWhitelightFull.png", id="loginLogo")
+      form(action="/", method="POST", id="logInForm")
+        hr
+        - if (invalidLogin == 'true') {
+            label(style="font-weight: bold") Invalid credentials - please re-enter
+        - }
+        div(class="loginRow")
+          label Email
+          input(type="text", id="emailInput", name="email")
+        div(class="loginRow")
+          label Password
+          input(type="password", id="passwordInput", name="password")
+        input(type="submit", id="loginSubmit", value="Log-In")
+        hr

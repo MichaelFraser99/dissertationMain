@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  content(class="visible")
+    div(class="tableHeadings")
+      label
+      label Name
+      label
+      label Access Level
+      label 
+      label
+    -grey=true;
+    -for(i=0;i<data['users'].length;i++) {
+      -if (grey) {
+        row(class="grey", class="userRow")
+          div
+          p(class="itemName")= data['users'][i].name
+          form(name="accessChoice")
+            select
+              option(value="No Access", id=0)
+              -for(x=0;x<data['accessLevels'].length;x++) {
+                -if (data['accessLevels'][x].id == data['users'][i].accessID) {
+                  option(selected id= data['accessLevels'][x].id)= data['accessLevels'][x].name
+                -} else {
+                  option(id= data['accessLevels'][x].id)= data['accessLevels'][x].name
+                -}
+              -}
+          input(class="userDelete", type="button", value="Delete", id= data['users'][i].name)
+          div
+        -grey = false;
+      -} else {
+        row(class="userRow")
+          div
+          p(class="itemName")= data['users'][i].name
+          form(name="accessChoice")
+            select
+              option(value="No Access", id=0)
+              -for(x=0;x<data['accessLevels'].length;x++) {
+                -if (data['accessLevels'][x].id == data['users'][i].accessID) {
+                  option(selected id= data['accessLevels'][x].id)= data['accessLevels'][x].name
+                -} else {
+                  option(id= data['accessLevels'][x].id)= data['accessLevels'][x].name
+                -}
+              -}
+          input(class="userDelete", type="button", value="Delete", id= data['users'][i].name)
+          div
+        -grey = true;
+      -}
+    -}
+    hr

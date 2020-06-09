@@ -1,0 +1,116 @@
+doctype html
+html
+  head
+    title= tabtitle
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js")
+    script(src="/javascripts/main.js")
+  body
+    greyOut(id="greyOut")
+    confirmation(id="confirmation")
+      label(id="confirmationMessage") PLACEHOLDER
+      label(id="confirmationURL")
+      collection
+        input(type="button" id="confirmationYes" value="Yes")
+        input(type="button" id="confirmationNo" value="Cancel")
+    errorMessage(id="errorMessage")
+      label(id="errorMessageMessage") PLACEHOLDER
+      collection
+        input(type="button" id="errorOK", value="OK")
+    fileUploadBox(id="fileUploadBox")
+      form(action='#', method="post", enctype="multipart/form-data")
+        h1 Upload a file
+        label Note: File may take some time to appear in the system
+        input(type="hidden", name="mode", value="editInfrastructure")
+        - if (url != null) {
+            input(type="hidden", name="id", value=url.id)
+        - }
+        input(type="file", name="fileUploaded")
+        input(type="submit", value="Submit")
+      input(type="button", value="Cancel", id="fileUploadCancelButton")
+    aside
+      nav
+        ul
+          img(src="/images/logoWhitelightFull.png")
+          li
+            a(class= (navSelected == "infrastructure" ? 'navSelected' : 'navNotSelected'), href="/allInfrastructure") Infrastructure
+          ul(class="asideSubNav" id="InfrastructureSubNav")
+            li
+              a(href="./allInfrastructure")
+                p(class= (subNavSelected == "index" ? 'subnavSelected' : 'subnavNotSelected')) - All Infrastructure
+            li
+              a(href="./addItem")
+                p(class= (subNavSelected == "addInfrastructure" ? 'subnavSelected' : 'subnavNotSelected')) - Add Infrastructure
+            li
+              if subNavSelected == 'manageGroups' || subNavSelected == "addGroup"
+                ul
+                  li(id="groupHeaderSub")
+                    a(href="./allGroups")
+                      p(class= (subNavSelected == "manageGroups" || subNavSelected == "addGroup" ? 'subnavSelected' : 'subnavNotSelected')) - Manage Groups
+                  li
+                    a(href="./addGroup" class="subNavigation")
+                      p(class= (subNavSelected == "addGroup" ? 'subnavSelected' : 'subnavNotSelected')) - Add Group
+              else
+                ul
+                  li(id="groupHeaderSub")
+                    a(href="./allGroups")
+                      p - Manage Groups
+            li 
+              if subNavSelected == 'manageCategories' || subNavSelected == "addCategory"
+                ul
+                  li(id="categoryHeaderSub")
+                    a(href="./allCategories")
+                      p(class= (subNavSelected == "manageCategories" || subNavSelected == "addCategory" ? 'subnavSelected' : 'subnavNotSelected')) - Manage Categories
+                  li
+                    a(href="./addCategory" class="subNavigation")
+                      p(class= (subNavSelected == "addCategory" ? 'subnavSelected' : 'subnavNotSelected')) - Add Category
+              else
+                ul
+                  li(id="categoryHeaderSub")
+                    a(href="./allCategories")
+                      p - Manage Categories
+          li
+            a(class= (navSelected == "passwords" ? 'navSelected' : 'navNotSelected'), href="./passwords") Passwords
+          ul(class="asideSubNav" id="PasswordsSubNav")
+            li
+              a(href="./passwords")
+                p(class= (subNavSelected == "allPasswords" ? 'subnavSelected' : 'subnavNotSelected')) - All Passwords
+            li
+              a(href="./addAccount")
+                p(class= (subNavSelected == "addAccount" ? 'subnavSelected' : 'subnavNotSelected')) - Add Account
+          li
+            a(class= (navSelected == "accessRights" ? 'navSelected' : 'navNotSelected'), href="./accessRights") Access Rights
+          ul(class="asideSubNav" id="Access RightsSubNav")
+            li
+              a(href="./accessRights")
+                p(class= (subNavSelected == "allAccessRights" ? 'subnavSelected' : 'subnavNotSelected')) - All Access Rights
+            li
+              a(href="./addAccessRights")
+                p(class= (subNavSelected == "addAccessRight" ? 'subnavSelected' : 'subnavNotSelected')) - Add Access Level
+          li
+            a(class= (navSelected == "userManagement" ? 'navSelected' : 'navNotSelected'), href="./userManagement") User Management
+          ul(class="asideSubNav" id="User ManagementSubNav")
+            li
+              a(href="./userManagement")
+                p(class= (subNavSelected == "allUsers" ? 'subnavSelected' : 'subnavNotSelected')) - All Users
+            li
+              a(href="./addUser")
+                p(class= (subNavSelected == "addUser" ? 'subnavSelected' : 'subnavNotSelected')) - Add User
+      
+    main
+      titlebar
+        p(id="titlebarTitle")= pagetitle
+
+        if topnav == 'index'
+          include subnavIndex
+          
+        - if (search == "true") {
+            form(action="#", method="GET", id="searchForm")
+              input(type="text" placeholder="Search..." name="searchBarField")
+              input(type="submit" value="Search" name="search")
+        - } else {
+            form(method="GET")
+              label 
+        - }
+
+    block content

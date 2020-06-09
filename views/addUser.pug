@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  content(id="addUser", class="flexRow")
+    div(class="flexColumn")
+      div(id="addUserCore")
+        h3 Add a user
+        div
+          label User Email:
+          input(type="text", placeholder="Email", id="userEmail")
+        div
+          label Access Level:
+          select(id="infrastructureGroupField")
+            option(selected, id=0) No Access
+            -for (counter = 0; counter < data['accessLevels'].length; counter++) {
+              option(id= data['accessLevels'][counter].id)= data['accessLevels'][counter].name
+            -}
+        div
+          input(type="button", id="addUserAddButton", value="Add")
+          input(type="button", id="addUserBackButton", value="Back")

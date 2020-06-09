@@ -1,0 +1,150 @@
+extends layout
+
+block content
+  content(class="visible")
+    -if (data != '') {
+      label(id="accessLevelID")= data['accessRightData']['id']
+    -}
+    ul(id="accessCore")
+      li
+        input(type="text", id="accessLevelName", placeholder="Name of Access Level", value= (data != [] ? data['accessRightData']['name'] : ''))
+      li
+        label(id="accessCheckBoxTitle") Access To:
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['mInfrastructure'] == true){
+            input(type="checkbox", id="1", name="manageInfrastructure", value="Manage Infrastructure" checked)
+            label(for="1") Manage Infrastructure
+          -} else {
+            input(type="checkbox", id="1", name="manageInfrastructure", value="Manage Infrastructure")
+            label(for="1") Manage Infrastructure
+          -}
+        -} else {
+          input(type="checkbox", id="1", name="manageInfrastructure", value="Manage Infrastructure")
+          label(for="1") Manage Infrastructure
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['mGroup'] == true){
+            input(type="checkbox", id="2", name="manageGroup", value="Manage Group" checked)
+            label(for="2") Manage Group
+          -} else {
+            input(type="checkbox", id="2", name="manageGroup", value="Manage Group")
+            label(for="2") Manage Group
+          -}
+        -} else {
+          input(type="checkbox", id="2", name="manageGroup", value="Manage Group")
+          label(for="2") Manage Group
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['mCategory'] == true){
+            input(type="checkbox", id="3", name="manageCategory", value="Manage Category" checked)
+            label(for="3") Manage Category
+          -} else {
+            input(type="checkbox", id="3", name="manageCategory", value="Manage Category")
+            label(for="3") Manage Category
+          -}
+        -} else {
+          input(type="checkbox", id="3", name="manageCategory", value="Manage Category")
+          label(for="3") Manage Category
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['mPassword'] == true){
+            input(type="checkbox", id="4", name="managePassword", value="Manage Password Manager" checked)
+            label(for="4") Manage Password Manager
+          -} else {
+            input(type="checkbox", id="4", name="managePassword", value="Manage Password Manager")
+            label(for="4") Manage Password Manager
+          -}
+        -} else {
+          input(type="checkbox", id="4", name="managePassword", value="Manage Password Manager")
+          label(for="4") Manage Password Manager
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['mAccounts'] == true){
+            input(type="checkbox", id="5", name="manageAccount", value="Manage User Accounts" checked)
+            label(for="5") Manage User Accounts
+          -} else {
+            input(type="checkbox", id="5", name="manageAccount", value="Manage User Accounts")
+            label(for="5") Manage User Accounts
+          -}
+        -} else {
+          input(type="checkbox", id="5", name="manageAccount", value="Manage User Accounts")
+          label(for="5") Manage User Accounts
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['vInfrastructure'] == true){
+            input(type="checkbox", id="6", name="viewInfrastructure", value="View Infrastructure" checked)
+            label(for="6") View Infrastructure
+          -} else {
+            input(type="checkbox", id="6", name="viewInfrastructure", value="View Infrastructure")
+            label(for="6") View Infrastructure
+          -}
+        -} else {
+          input(type="checkbox", id="6", name="viewInfrastructure", value="View Infrastructure")
+          label(for="6") View Infrastructure
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['vGroup'] == true){
+            input(type="checkbox", id="7", name="viewGroup", value="View Group" checked)
+            label(for="7") View Group
+          -} else {
+            input(type="checkbox", id="7", name="viewGroup", value="View Group")
+            label(for="7") View Group
+          -}
+        -} else {
+          input(type="checkbox", id="7", name="viewGroup", value="View Group")
+          label(for="7") View Group
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['vCategory'] == true){
+            input(type="checkbox", id="8", name="viewCategory", value="View Category" checked)
+            label(for="8") View Category
+          -} else {
+            input(type="checkbox", id="8", name="viewCategory", value="View Category")
+            label(for="8") View Category
+          -}
+        -} else {
+          input(type="checkbox", id="8", name="viewCategory", value="View Category")
+          label(for="8") View Category
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['vPassword'] == true){
+            input(type="checkbox", id="9", name="viewPassword", value="View Password Manager" checked)
+            label(for="9") View Password Manager
+          -} else {
+            input(type="checkbox", id="9", name="viewPassword", value="View Password Manager")
+            label(for="9") View Password Manager
+          -}
+        -} else {
+          input(type="checkbox", id="9", name="viewPassword", value="View Password Manager")
+          label(for="9") View Password Manager
+        -}
+      li
+        -if (data != '') {
+          -if (data['accessRightData']['vAccounts'] == true){
+            input(type="checkbox", id="10", name="viewAccount", value="View User Accounts" checked)
+            label(for="10") View User Accounts
+          -} else {
+            input(type="checkbox", id="10", name="viewAccount", value="View User Accounts")
+            label(for="10") View User Accounts
+          -}
+        -} else {
+          input(type="checkbox", id="10", name="viewAccount", value="View User Accounts")
+          label(for="10") View User Accounts
+        -}
+    -if (data != '') {
+      input(id="accessSaveButton", type="button", value="Save")
+      input(id="accessDeleteButton", type="button", value="Delete")
+      input(id="accessBackButton", type="button", value="Back")
+    -} else {
+      input(id="accessAddButton", type="button", value="Add")
+      input(id="accessBackButton", type="button", value="Back")
+    -}

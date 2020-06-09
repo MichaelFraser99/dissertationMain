@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  content(id="accessRights", class="visible")
+    category
+      div(class="tableHeadings")
+        label
+        label Name
+        label
+        label 
+      -grey = true;
+      -for (i=0; i<data['accessLevels'].length; i++) {
+        -if(grey){
+          row(class="grey")
+            div
+            p(class="itemName")= data['accessLevels'][i]['name']
+            div
+            form(action="./addAccessRights")
+              input(type="hidden" name="mode" value="edit")
+              input(type="hidden" name="accessID" value=data['accessLevels'][i]['id'])
+              input(class="itemButton" type="submit" value="🡒")
+          -grey = false;
+        -} else {
+          row
+            div
+            p(class="itemName")= data['accessLevels'][i]['name']
+            div
+            form(action="./addAccessRights")
+              input(type="hidden" name="mode" value="edit")
+              input(type="hidden" name="accessID" value=data['accessLevels'][i]['id'])
+              input(class="itemButton" type="submit" value="🡒")
+          -grey = true;
+        -}
+      -}
+      hr
